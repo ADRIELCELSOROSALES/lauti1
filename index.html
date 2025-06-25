@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lautaro Pinto - Senior iOS Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #007AFF;
+            --secondary: #5856D6;
+            --accent: #FF9500;
+            --success: #34C759;
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --bg-card: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8E8E93;
+            --text-tertiary: #636366;
+            --border: #1C1C1E;
+            --gradient-primary: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF9500 0%, #FF6B35 100%);
+            --shadow-primary: 0 8px 32px rgba(0, 122, 255, 0.15);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 149, 0, 0.2) 0%, transparent 50%),
+                        var(--bg-primary);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 100px;
+            padding: 0.75rem;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .project-meta {
+            flex: 1;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-period {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stack-tag {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .project-highlights {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-highlights li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .project-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-period {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .experience-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-metrics {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .contact-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .achievement-metrics {
+                gap: 1rem;
+            }
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="status-dot"></div>
+                Available for new opportunities
+            </div>
+            
+            <h1 class="hero-title">Lautaro Pinto</h1>
+            <p class="hero-subtitle">Senior iOS Developer crafting exceptional mobile experiences with Swift & SwiftUI</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">7+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Apps Shipped</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">97%</span>
+                    <span class="stat-label">Crash-Free Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2M+</span>
+                    <span class="stat-label">Users Reached</span>
+                </div>
+            </div>
+            
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="./LautaroPintoCV.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="./assets/perfill.jpeg" alt="Lautaro Pinto" />
+            </div>
+            <div class="about-content">
+                <h2>Building the future of mobile experiences</h2>
+                <p class="about-text">
+                    I'm a passionate Senior iOS Developer with over 7 years of experience crafting high-performance mobile applications. 
+                    I specialize in Swift, SwiftUI, and modern iOS architecture patterns, with a proven track record of shipping 
+                    production apps that serve millions of users across fintech, banking, and productivity sectors.
+                </p>
+                <p class="about-text">
+                    My expertise spans from architecting scalable SDK solutions to building delightful user experiences. 
+                    I'm currently exploring cutting-edge technologies like SwiftData, async/await, and advanced SwiftUI patterns 
+                    to stay at the forefront of iOS development.
+                </p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Swift</span>
+                    <span class="tech-tag">SwiftUI</span>
+                    <span class="tech-tag">UIKit</span>
+                    <span class="tech-tag">SwiftData</span>
+                    <span class="tech-tag">Combine</span>
+                    <span class="tech-tag">RxSwift</span>
+                    <span class="tech-tag">GraphQL</span>
+                    <span class="tech-tag">MVVM</span>
+                    <span class="tech-tag">VIPER</span>
+                    <span class="tech-tag">Xcode Cloud</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Apps and SDKs that showcase my expertise in iOS development</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🚀</div>
+                    <div class="project-meta">
+                        <h3 class="project-title">Kaizenth</h3>
+                        <p class="project-period">Personal Project • Sept 2024 – Present</p>
+                    </div>
+                </div>
+                
+                <p class="project-description">
+                    A sophisticated habit tracking app built with modern SwiftUI architecture, 
+                    focusing on long-term consistency and data-driven insights to help users build lasting habits.
+                </p>
+                
+                <div class="project-stack">
+                    <span class="stack-tag">SwiftUI</span>
+                    <span class="stack-tag">SwiftData</span>
+                    <span class="stack-tag">SwiftCharts</span>
+                    <span class="stack-tag">Xcode Cloud</span>
+                </div>
+                
+                <ul class="project-highlights">
+                    <li>Built 100% natively with SwiftUI and zero third-party dependencies</li>
+                    <li>Designed modular SwiftData models for advanced habit analytics</li>
+                    <li>Implemented habit collections and break tracking for user persistence</li>
+                    <li>Achieved 4.8★ App Store rating with positive user retention metrics</li>
+                </ul>
+                
+                <div class="project-links">
+                    <a href="https://apps.apple.com/us/app/habit-development-kaizenth/id6736703213" target="_blank" class="project-link">
+                        App Store ↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">💳</div>
+                    <div class="project-meta">
+                        <h3 class="project-title">Yuno Payments SDK</h3>
+                        <p class="project-period">Yuno • Jul 2022 – Mar 2024</p>
+                    </div>
+                </div>
+                
+                <p class="project-description">
+                    Enterprise-grade payment gateway SDK serving multiple fintech partners, 
+                    designed for high customization and seamless integration across diverse payment flows.
+                </p>
+                
+                <div class="project-stack">
+                    <span class="stack-tag">UIKit</span>
+                    <span class="stack-tag">Swift</span>
+                    <span class="stack-tag">Combine</span>
+                    <span class="stack-tag">CocoaPods</span>
+                    <span class="stack-tag">SPM</span>
+                </div>
+                
+                <ul class="project-highlights">
+                    <li>Architected lightweight, modular SDK with clean integration APIs</li>
+                    <li>Collaborated cross-functionally with design, QA, and backend teams</li>
+                    <li>Delivered secure, PCI-compliant payment solution</li>
+                    <li>Distributed via CocoaPods and SPM for easy partner adoption</li>
+                </ul>
+                
+                <div class="project-links">
+                    <a href="https://docs.y.uno/docs/ios-sdk-integrations" target="_blank" class="project-link">
+                        Documentation ↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🏦</div>
+                    <div class="project-meta">
+                        <h3 class="project-title">Brubank</h3>
+                        <p class="project-period">Brubank • Apr 2021 – Dec 2021</p>
+                    </div>
+                </div>
+                
+                <p class="project-description">
+                    High-velocity feature development for Argentina's leading digital bank, 
+                    delivering critical banking features under aggressive timelines while maintaining quality.
+                </p>
+                
+                <div class="project-stack">
+                    <span class="stack-tag">UIKit</span>
+                    <span class="stack-tag">SwiftUI</span>
+                    <span class="stack-tag">RxSwift</span>
+                    <span class="stack-tag">GraphQL</span>
+                    <span class="stack-tag">Quick</span>
+                </div>
+                
+                <ul class="project-highlights">
+                    <li>Integrated GraphQL services for efficient backend communication</li>
+                    <li>Built complex UI animations under tight sprint deadlines</li>
+                    <li>Improved test coverage by 40% using Quick, Nimble, and XCTest</li>
+                    <li>Contributed to app stability improvements in production</li>
+                </ul>
+                
+                <div class="project-links">
+                    <a href="https://apps.apple.com/ar/app/brubank-banco-digital/id1295202448" target="_blank" class="project-link">
+                        App Store ↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">💼</div>
+                    <div class="project-meta">
+                        <h3 class="project-title">Naranja X</h3>
+                        <p class="project-period">Naranja • Apr 2019 – Mar 2021</p>
+                    </div>
+                </div>
+                
+                <p class="project-description">
+                    Led large-scale architecture migration for Argentina's major credit card app, 
+                    transforming legacy codebase into a scalable, maintainable modern iOS application.
+                </p>
+                
+                <div class="project-stack">
+                    <span class="stack-tag">UIKit</span>
+                    <span class="stack-tag">Swift</span>
+                    <span class="stack-tag">VIPER</span>
+                    <span class="stack-tag">REST APIs</span>
+                    <span class="stack-tag">CocoaPods</span>
+                </div>
+                
+                <ul class="project-highlights">
+                    <li>Led migration from MVC to MVP, then to VIPER architecture</li>
+                    <li>Refactored legacy code improving performance by 60%</li>
+                    <li>Delivered high-UX features in collaboration with design teams</li>
+                    <li>Mentored junior developers on iOS best practices</li>
+                </ul>
+                
+                <div class="project-links">
+                    <a href="https://apps.apple.com/ar/app/naranja-x-billetera-virtual/id1452691757" target="_blank" class="project-link">
+                        App Store ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="section-header">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">7+ years building world-class iOS applications</p>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-period">2024 – Present</div>
+            <div class="experience-content">
+                <h3>Senior iOS Developer</h3>
+                <p class="experience-company">Independent • Buenos Aires, Argentina</p>
+                <p class="experience-description">
+                    Building innovative iOS applications and consulting on mobile architecture. 
+                    Currently focused on SwiftUI and modern iOS development patterns.
+                </p>
+                <div class="achievement-metrics">
+                    <div class="metric">
+                        <span class="metric-value">1</span>
+                        <span class="metric-label">App Launched</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">4.8★</span>
+                        <span class="metric-label">App Store Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-period">2022 – 2024</div>
+            <div class="experience-content">
+                <h3>iOS SDK Developer</h3>
+                <p class="experience-company">Yuno • Remote</p>
+                <p class="experience-description">
+                    Led development of enterprise payment SDK used by multiple fintech partners across Latin America. 
+                    Architected modular, secure solutions for complex payment flows.
+                </p>
+                <div class="achievement-metrics">
+                    <div class="metric">
+                        <span class="metric-value">10+</span>
+                        <span class="metric-label">Partner Integrations</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">99.9%</span>
+                        <span class="metric-label">Uptime</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">$50M+</span>
+                        <span class="metric-label">Transactions Processed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-period">2021 – 2022</div>
+            <div class="experience-content">
+                <h3>iOS Developer</h3>
+                <p class="experience-company">Brubank • Buenos Aires, Argentina</p>
+                <p class="experience-description">
+                    Developed critical features for Argentina's fastest-growing digital bank. 
+                    Worked in agile environment delivering high-quality banking features.
+                </p>
+                <div class="achievement-metrics">
+                    <div class="metric">
+                        <span class="metric-value">20+</span>
+                        <span class="metric-label">Features Shipped</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">40%</span>
+                        <span class="metric-label">Test Coverage Increase</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">500K+</span>
+                        <span class="metric-label">Active Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-period">2019 – 2021</div>
+            <div class="experience-content">
+                <h3>iOS Developer</h3>
+                <p class="experience-company">Naranja • Córdoba, Argentina</p>
+                <p class="experience-description">
+                    Led architectural transformation of legacy iOS app to modern, scalable architecture. 
+                    Mentored team on iOS best practices and clean code principles.
+                </p>
+                <div class="achievement-metrics">
+                    <div class="metric">
+                        <span class="metric-value">60%</span>
+                        <span class="metric-label">Performance Improvement</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">3</span>
+                        <span class="metric-label">Developers Mentored</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">1M+</span>
+                        <span class="metric-label">App Downloads</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" style="padding: 8rem 2rem; background: var(--bg-secondary);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Technologies and frameworks I excel at</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 48px; height: 48px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📱</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700;">iOS Development</h3>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="tech-tag">Swift 5.9+</span>
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">UIKit</span>
+                        <span class="tech-tag">SwiftData</span>
+                        <span class="tech-tag">Core Data</span>
+                        <span class="tech-tag">Combine</span>
+                        <span class="tech-tag">async/await</span>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 48px; height: 48px; background: var(--gradient-secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🏗️</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700;">Architecture</h3>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="tech-tag">MVVM</span>
+                        <span class="tech-tag">VIPER</span>
+                        <span class="tech-tag">MVP</span>
+                        <span class="tech-tag">Clean Architecture</span>
+                        <span class="tech-tag">Modular Design</span>
+                        <span class="tech-tag">Dependency Injection</span>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #34C759 0%, #30D158 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🔧</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700;">Tools & CI/CD</h3>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="tech-tag">Xcode</span>
+                        <span class="tech-tag">Xcode Cloud</span>
+                        <span class="tech-tag">Bitrise</span>
+                        <span class="tech-tag">Fastlane</span>
+                        <span class="tech-tag">CocoaPods</span>
+                        <span class="tech-tag">SPM</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🧪</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700;">Testing & Quality</h3>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="tech-tag">XCTest</span>
+                        <span class="tech-tag">Quick & Nimble</span>
+                        <span class="tech-tag">UI Testing</span>
+                        <span class="tech-tag">TDD</span>
+                        <span class="tech-tag">Code Review</span>
+                        <span class="tech-tag">Performance Profiling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>Let's Build Something Amazing</h2>
+            <p class="contact-text">
+                Ready to take your iOS project to the next level? I'm available for full-time opportunities, 
+                consulting, or collaboration on exciting mobile projects.
+            </p>
+            
+            <div class="hero-cta">
+                <a href="mailto:ar.lautaropinto@gmail.com" class="btn btn-primary">Get In Touch</a>
+                <a href="./LautaroPintoCV.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/lautaro-pinto" target="_blank" class="social-link" title="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/lautaropinto" target="_blank" class="social-link" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                </a>
+                <a href="mailto:ar.lautaropinto@gmail.com" class="social-link" title="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.082l9.282 6.955 9.282-6.955H22.364c.904 0 1.636.732 1.636 1.636z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 2rem; text-align: center; border-top: 1px solid var(--border); background: var(--bg-primary);">
+        <p style="color: var(--text-tertiary); font-size: 0.875rem;">
+            © 2025 Lautaro Pinto. Crafted with Swift & passion in Argentina.
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards and experience items
+        document.querySelectorAll('.project-card, .experience-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Email copy functionality
+        function copyEmail() {
+            navigator.clipboard.writeText('ar.lautaropinto@gmail.com').then(() => {
+                // Could add a toast notification here
+                console.log('Email copied to clipboard');
+            });
+        }
+
+        // Add some dynamic particle-like effects
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            element.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            element.textContent = ['⚡', '🚀', '💫', '✨'][Math.floor(Math.random() * 4)];
+            
+            document.querySelector('.hero').appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 8000);
+        }
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 3000);
+    </script>
+</body>
+</html>
